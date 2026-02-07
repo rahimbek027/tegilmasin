@@ -9,8 +9,8 @@ function showScare(){
   s.style.opacity="1";
   s.style.transform="scale(1.4)";
 
-  demonSound();
-  whisperSound();
+  screamSound();    // 🔊 AYOL QICHQIRIG'I
+  whisperSound();   // shivir shovqin
   shake();
   flash();
   vibrate();
@@ -23,17 +23,24 @@ function showScare(){
   },120);
 }
 
-/* DAHSHATLI PAST OVOZ */
-function demonSound(){
-  const c=new (window.AudioContext||window.webkitAudioContext)();
-  const o=c.createOscillator(), g=c.createGain();
-  o.type="sawtooth";
-  o.frequency.setValueAtTime(60,c.currentTime);
-  o.frequency.linearRampToValueAtTime(18,c.currentTime+1.2);
-  g.gain.setValueAtTime(0.9,c.currentTime);
-  g.gain.exponentialRampToValueAtTime(0.01,c.currentTime+1.2);
-  o.connect(g); g.connect(c.destination);
-  o.start(); o.stop(c.currentTime+1.2);
+/* 👩 AYOL QICHQIRIG'I (kod bilan high-pitch) */
+function screamSound(){
+  const ctx=new (window.AudioContext||window.webkitAudioContext)();
+  const osc=ctx.createOscillator();
+  const gain=ctx.createGain();
+
+  osc.type="sine";
+  osc.frequency.setValueAtTime(600,ctx.currentTime);  // yuqori pitch
+  osc.frequency.exponentialRampToValueAtTime(1200,ctx.currentTime+0.6); // tezlik bilan ko‘tariladi
+
+  gain.gain.setValueAtTime(0.7,ctx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.01,ctx.currentTime+0.6);
+
+  osc.connect(gain);
+  gain.connect(ctx.destination);
+
+  osc.start();
+  osc.stop(ctx.currentTime+0.6);
 }
 
 /* SHIVIR SHOVQIN */
@@ -41,11 +48,11 @@ function whisperSound(){
   const c=new (window.AudioContext||window.webkitAudioContext)();
   const buffer=c.createBuffer(1, c.sampleRate*0.8, c.sampleRate);
   const data=buffer.getChannelData(0);
-  for(let i=0;i<data.length;i++) data[i]=(Math.random()*2-1)*0.4;
+  for(let i=0;i<data.length;i++) data[i]=(Math.random()*2-1)*0.3;
   const noise=c.createBufferSource();
   const gain=c.createGain();
   noise.buffer=buffer;
-  gain.gain.value=0.3;
+  gain.gain.value=0.2;
   noise.connect(gain);
   gain.connect(c.destination);
   noise.start();

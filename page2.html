@@ -1,32 +1,55 @@
 <!DOCTYPE html>
 <html lang="uz">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>😱</title>
-  <link rel="stylesheet" href="./app.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>😱 Jump-Scare!</title>
+  <link rel="stylesheet" href="./app.css">
 </head>
 <body class="page2">
 
-  <!-- 1 soniya qorong‘i -->
+  <!-- 1 soniya qora ekran -->
   <div class="loading"></div>
-
-  <!-- Flashlight flicker -->
-  <div class="flashlight"></div>
 
   <!-- Jump scare -->
   <div class="scare" id="scare">
-    <h1 class="glitch red big" data-text="aniq balo bo‘adi bosib 😂">
-      aniq balo bo‘adi bosib 😂
-    </h1>
 
-    <!-- Qon tomchi (stilize) -->
-    <div class="blood">
-      <span></span><span></span><span></span>
-    </div>
+    <!-- Sharpa SVG -->
+    <svg class="ghost" viewBox="0 0 200 260">
+      <defs>
+        <radialGradient id="eyeGlow" r="50%">
+          <stop offset="0%" stop-color="#ff0000" stop-opacity="1"/>
+          <stop offset="60%" stop-color="#ff0000" stop-opacity="0.6"/>
+          <stop offset="100%" stop-color="#ff0000" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
 
-    <!-- Siluet -->
-    <div class="shadow-face"></div>
+      <!-- Tana -->
+      <path d="
+        M100 10
+        C40 10, 20 60, 20 120
+        V210
+        Q40 190, 60 210
+        Q80 190, 100 210
+        Q120 190, 140 210
+        Q160 190, 180 210
+        V120
+        C180 60, 160 10, 100 10
+        Z
+      " class="ghost-body"/>
+
+      <!-- Qizil ko‘z nuri -->
+      <circle cx="70" cy="90" r="30" class="eye-glow"/>
+      <circle cx="130" cy="90" r="30" class="eye-glow"/>
+
+      <!-- Ko‘zlar -->
+      <circle cx="70" cy="90" r="10" class="eye"/>
+      <circle cx="130" cy="90" r="10" class="eye"/>
+
+      <!-- Og‘iz -->
+      <ellipse cx="100" cy="140" rx="18" ry="28" class="mouth"/>
+    </svg>
+
   </div>
 
   <script src="./scare.js"></script>

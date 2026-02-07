@@ -1,7 +1,7 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
 
 /* 📱 FAQAT MOBIL */
-@media (min-width: 769px){
+@media (min-width:769px){
   body::before{
     content:"📱 Faqat mobil qurilmalar uchun";
     position:fixed;inset:0;background:#000;color:#fff;
@@ -30,70 +30,59 @@ html,body{width:100%;height:100%}
 /* === 2-sahifa === */
 .page2{background:#000;overflow:hidden}
 
-/* 1 soniya qorong‘i */
+/* 1 soniya qora ekran */
 .loading{position:fixed;inset:0;background:#000;z-index:10}
 
-/* Flashlight (milillash) */
-.flashlight{
-  position:fixed;inset:-20%;
-  background:radial-gradient(circle at 50% 40%, rgba(255,255,255,.08), transparent 40%);
-  animation:flicker .12s infinite;pointer-events:none;z-index:5
-}
-@keyframes flicker{
-  0%{opacity:.1}50%{opacity:.25}100%{opacity:.1}
-}
-
-/* Jump scare konteyner */
+/* Jump scare container */
 .scare{
-  position:fixed;inset:0;background:#000;display:flex;
-  align-items:center;justify-content:center;flex-direction:column;
-  opacity:0;transform:scale(.15);z-index:20
+  position:fixed;inset:0;background:#000;
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;transform:scale(.05);z-index:20
 }
 
-/* GLITCH */
-.glitch{position:relative;color:#fff;text-align:center;animation:glitchMain 1s infinite}
-.big{font-size:36px}
-.red{color:#ff2a2a}
-.glitch::before,.glitch::after{
-  content:attr(data-text);position:absolute;left:0;width:100%;opacity:.85
-}
-.glitch::before{color:#ff0000;animation:glitchRed .5s infinite}
-.glitch::after{color:#00ffff;animation:glitchBlue .4s infinite}
-@keyframes glitchMain{
-  0%{transform:none}
-  20%{transform:skew(-8deg)}
-  40%{transform:skew(8deg)}
-  60%{transform:translate(-4px,4px)}
-  100%{transform:none}
-}
-@keyframes glitchRed{
-  0%{transform:translate(4px,-4px)}
-  50%{transform:translate(-4px,4px)}
-  100%{transform:translate(4px,-4px)}
-}
-@keyframes glitchBlue{
-  0%{transform:translate(-4px,4px)}
-  50%{transform:translate(4px,-4px)}
-  100%{transform:translate(-4px,4px)}
+/* SHARPA TANASI */
+.ghost-body{ fill:#f2f2f2 }
+
+/* KO‘ZLAR */
+.eye{
+  fill:#000;
+  animation: eyeBlink 2.5s infinite;
 }
 
-/* Qon tomchi (stilize, grafika yo‘q) */
-.blood{position:absolute;top:50%;width:100%;display:flex;gap:20px;justify-content:center}
-.blood span{
-  width:10px;height:80px;background:linear-gradient(#ff0000,#5a0000);
-  border-radius:0 0 8px 8px;animation:drip 1.4s infinite
-}
-.blood span:nth-child(2){animation-delay:.3s;height:120px}
-.blood span:nth-child(3){animation-delay:.6s;height:90px}
-@keyframes drip{
-  0%{transform:translateY(-20px);opacity:0}
-  20%{opacity:1}
-  100%{transform:translateY(120px);opacity:0}
+/* QIZIL KO‘Z NURI */
+.eye-glow{
+  fill:url(#eyeGlow);
+  filter: blur(6px);
+  opacity:0;
+  animation: glowPulse 1.2s infinite;
 }
 
-/* Siluet yuz */
-.shadow-face{
-  position:absolute;bottom:10%;width:140px;height:140px;
-  background:radial-gradient(circle at 50% 40%, #000 30%, #111 60%);
-  filter:blur(6px);opacity:.8
+/* OG‘IZ */
+.mouth{ fill:#000 }
+
+/* KO‘Z OCHILISH */
+@keyframes eyeBlink{
+  0%,85%,100%{ r:10 }
+  90%{ r:2 }
+}
+
+/* KO‘Z NUR PULS */
+@keyframes glowPulse{
+  0%{ opacity:0; transform:scale(.6) }
+  50%{ opacity:1; transform:scale(1.1) }
+  100%{ opacity:0; transform:scale(.6) }
+}
+
+/* GLITCH TITROQ */
+.ghost{
+  width:220px;
+  filter: drop-shadow(0 0 40px red);
+  animation: ghostGlitch .15s infinite;
+}
+@keyframes ghostGlitch{
+  0%{transform:translate(0,0)}
+  25%{transform:translate(-6px,4px)}
+  50%{transform:translate(6px,-4px)}
+  75%{transform:translate(-4px,-6px)}
+  100%{transform:translate(0,0)}
 }
